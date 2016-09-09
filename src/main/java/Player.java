@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public interface Player {
-    void turn(Board board);
+    Point turn(Board board);
 }

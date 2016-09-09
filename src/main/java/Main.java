@@ -1,24 +1,32 @@
-//wincheck обернуть в trycatch и проходить по всему множеству вдоль одной прямой
+import java.awt.*;
 
-//я не уверен, что тут вообще нужен Board.placeXO(,,)
-//в board.placeXO заделать большой цикл
-//переписать board.winCheck с dx,dy
-//сделать turn возвращать Cell, в который походили и юзать на него winCheck
+//TODO: possibility for 2 AI's or 2 Humans to play; change AIMARK & HUMANMARK identifiers
+//turn is not supposed to return Cell, it seems. Chewbakka proposed Point
+//merge turn() & placeXO
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Board board = new Board();
         board.initField();
         Human human = new Human();
         AI ai = new AI();
         board.printField();
+        boolean reachedWinCond;
 
-        while (true) {
-            human.turn(board);
-            board.printField();
-            board.winCheck()
-            ai.turn(board);
-            board.printField();
+        boolean turn = true;    //for turn sequence
+        Point current;
+        do {
+            if(turn){
+                current = human.turn(board);
+                board.printField();
+                reachedWinCond = board.winCheck(current.x, current.y);
+            } else{
+                current = ai.turn(board);
+                board.printField();
+                reachedWinCond = board.winCheck(current.x, current.y);
+            }
+            turn = !turn;
+        } while (!reachedWinCond);
+        System.out.println("awe");
 
-        }
     }
 }
