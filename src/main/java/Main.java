@@ -1,8 +1,10 @@
+//possible upgrades:
+//possibility for 2 AI's or 2 Humans to play; change AIMARK & HUMANMARK identifiers
+//create gameManager for more OOP
+//amend winCheck since current implementation is pretty stupid
+
 import java.awt.*;
 
-//TODO: possibility for 2 AI's or 2 Humans to play; change AIMARK & HUMANMARK identifiers
-//turn is not supposed to return Cell, it seems. Chewbakka proposed Point
-//merge turn() & placeXO
 public class Main {
     public static void main(String[] args) {
         Board board = new Board();

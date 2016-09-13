@@ -1,6 +1,3 @@
-//TODO: remake placeXO into iteration
-//removing pointList. MOAR SHIT FOR SHITGOD
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +8,7 @@ public class Board {
     private final int SIZE = 5;
     private final int TO_WIN = 3;
     private Point[][] field = new Point[SIZE][SIZE];
-    private List<Point> emptyPointsList = new ArrayList<>();   //for AI turns, not to make it each turn into AI.turn()
+    private List<Point> emptyPointsList = new ArrayList<>();   //for AI turns, not to repeat it each turn into AI.turn()
     private Map<Point, Cell> cellStates = new HashMap<>();
 
     public void initField() {
@@ -43,14 +40,16 @@ public class Board {
             emptyPointsList.remove(field[x][y]);
             return field[x][y];
         } else {
+            printField();
             System.out.println("Choose another cell");
             return null;
         }
     }
 
     public boolean winCheck(int x, int y) {
-        int row = 0;
         Cell val = cellStates.get(field[x][y]);
+        int row = 0;
+
         for (int i = x - (TO_WIN - 1); i <= x + (TO_WIN - 1); i++) {
             try {
                 if (cellStates.get(field[i][y]).equals(val))
