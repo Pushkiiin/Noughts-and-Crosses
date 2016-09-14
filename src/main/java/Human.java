@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Human implements Player {
     public Point turn(Board board){
         Point done = null;
-        while(done == null ){
+        while(done == null ){   //handling wrong input
             Scanner sc = new Scanner(System.in);
             System.out.print("Input x: ");
             int x = sc.nextInt();

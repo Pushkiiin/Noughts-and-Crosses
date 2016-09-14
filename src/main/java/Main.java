@@ -1,7 +1,9 @@
 //possible upgrades:
-//possibility for 2 AI's or 2 Humans to play; change AIMARK & HUMANMARK identifiers
+//possibility for 2 AI's or 2 Humans to play
 //create gameManager for more OOP
-//amend winCheck since current implementation is pretty stupid
+//amend board.winCheck() since current implementation is pretty stupid
+//handle over9k exceptional situations
+//improve AI
 
 import java.awt.*;
 
@@ -28,7 +30,6 @@ public class Main {
             }
             turn = !turn;
         } while (!reachedWinCond);
-        System.out.println("awe");
-
+        System.out.println("awe winner");
     }
 }
