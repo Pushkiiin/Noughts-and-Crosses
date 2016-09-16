@@ -1,9 +1,7 @@
-//possible upgrades:
-//possibility for 2 AI's or 2 Humans to play
-//create gameManager for more OOP
-//amend board.winCheck() since current implementation is pretty stupid
-//handle over9k exceptional situations
-//improve AI
+//upgrades:
+//mb move some methods from Board to GameManager, I'm not sure
+//write tests for mr. Chewey
+//improve AI - sweet dreams are made of...
 
 import java.awt.*;
 
@@ -11,25 +9,29 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
         board.initField();
-        Human human = new Human();
-        AI ai = new AI();
+        GameManager gm = new GameManager();
+        Player[] opponents = new Player[2];
+        gm.chooseMod(opponents);
+
         board.printField();
         boolean reachedWinCond;
-
         boolean turn = true;    //for turn sequence
         Point current;
+        Cell lastTurnSymbol;    //for congratulating winner
         do {
-            if(turn){
-                current = human.turn(board);
+            if (turn) {
+                current = opponents[0].turn(board);
+                lastTurnSymbol = opponents[0].getSymbol();
                 board.printField();
                 reachedWinCond = board.winCheck(current.x, current.y);
-            } else{
-                current = ai.turn(board);
+            } else {
+                current = opponents[1].turn(board);
+                lastTurnSymbol = opponents[1].getSymbol();
                 board.printField();
                 reachedWinCond = board.winCheck(current.x, current.y);
             }
             turn = !turn;
         } while (!reachedWinCond);
-        System.out.println("awe winner");
+        System.out.println(lastTurnSymbol.getVal() + " wins!");
     }
 }

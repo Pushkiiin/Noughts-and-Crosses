@@ -1,12 +1,12 @@
 public enum Cell {
-    EMPTY('*'), XMARK('X'), OMARK('O');
+    EMPTY('-'), CROSS('X'), NOUGHT('O');
     private char val;
 
-    Cell(char symbol){
-        this.val = symbol;
+    Cell(char val) {
+        this.val = val;
     }
 
-    public char getVal(){
+    public char getVal() {
         return val;
     }
 }
