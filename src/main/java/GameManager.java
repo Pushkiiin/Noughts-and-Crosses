@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class GameManager {
-    public void chooseMod(Player[] opponents) {
+    public void chooseMode(Player[] opponents) {
         System.out.println("1) Human vs Human");
         System.out.println("2) Human vs AI");
         System.out.println("3) AI vs Human");
