@@ -1,8 +1,9 @@
 //upgrades:
 //printField from Board to GameManager
-//handle draws and input number >4 in choosemode
+//handle draws and input number >4 in choosemode. Done. Handle not int input?
 //make choice of turn ordering
 //write tests for mr. Chewey
+//correct draw bug
 //implement MVC?
 //improve AI - sweet dreams are made of...
 
@@ -16,18 +17,25 @@ public class Main {
         gm.chooseMode(opponents);
 
         board.printField();
-        boolean reachedWinCond;
+        boolean reachedWinCond = false;
         boolean firstPlayerTurn = true;    //for turn sequence
         Point current;
-        Cell lastTurnSymbol;    //for congratulating winner
-        do {
+        Cell lastTurnSymbol = Cell.EMPTY;    //needed  for congratulating winner; just initialization
+
+        while (!reachedWinCond && !board.getEmptyPointsList().isEmpty()) {
             Player currentPlayer = firstPlayerTurn ? opponents[0] : opponents[1];
             current = currentPlayer.turn(board);
             lastTurnSymbol = currentPlayer.getSymbol();
             board.printField();
             reachedWinCond = board.winCheck(current.x, current.y);
             firstPlayerTurn = !firstPlayerTurn;
-        } while (!reachedWinCond);
-        System.out.println(lastTurnSymbol.getVal() + " wins!");
+        }
+
+        if (reachedWinCond){
+            System.out.println(lastTurnSymbol.getVal() + " wins!");
+        }
+        else{
+            System.out.println("Draw!");
+        }
     }
 }
